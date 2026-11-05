@@ -31,6 +31,19 @@ h1{font:700 clamp(2.5rem,8vw,4.4rem)/1 Literata,Georgia,serif;letter-spacing:-.0
 .raf span{font:500 .8rem Inter,sans-serif;color:var(--soluk);margin-top:auto;padding-top:10px;display:flex;justify-content:space-between}
 .raf i{font-style:normal;color:var(--murekkep)}
 .not{font-size:.88rem;color:var(--soluk)}
+.roman{display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:center;margin:34px 0 10px;padding:22px;background:var(--kagit);border:1px solid var(--cizgi);border-radius:6px}
+.kapak{aspect-ratio:2/3;background:linear-gradient(160deg,#3a1d10,#5a2d14 60%,#2b1d12);color:#f4ead5;border-radius:3px 8px 8px 3px;box-shadow:inset 8px 0 0 rgba(0,0,0,.25),0 14px 30px -14px rgba(43,29,18,.8);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:16px;gap:10px}
+.kapak b{font:700 1.45rem/1.15 Literata,Georgia,serif}.kapak span{font:500 .78rem Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.kapak i{font:500 .75rem Inter,sans-serif;font-style:normal;opacity:.6;border-top:1px solid rgba(244,234,213,.4);padding-top:8px}
+.roman h2{font:700 clamp(1.8rem,5vw,2.6rem)/1.05 Literata,Georgia,serif;margin:6px 0 2px;color:var(--murekkep)}
+.roman .yazar{margin:0 0 10px;font-weight:600}.roman p{margin:0 0 8px}
+.basla{display:inline-block;margin:8px 0 12px;background:var(--murekkep);color:var(--kagit);text-decoration:none;font:600 .95rem Inter,sans-serif;padding:12px 20px;border-radius:99px}
+.kisimlar{display:flex;flex-wrap:wrap;gap:6px}.kisimlar a{font:600 .8rem Inter,sans-serif;text-decoration:none;border:1px solid var(--cizgi);border-radius:8px;min-width:34px;text-align:center;padding:6px 8px;color:var(--yazi)}
+.kisimlar a.bu{background:var(--vurgu);border-color:var(--vurgu)}
+.bolum{font:700 1.5rem Literata,Georgia,serif;color:var(--murekkep);margin:40px 0 0}
+.kisim-nav{display:flex;justify-content:space-between;gap:10px;font:600 .85rem Inter,sans-serif;margin:10px 0 0!important}
+.kisim-nav a{text-decoration:none}
+@media (max-width:620px){.roman{grid-template-columns:1fr}.kapak{max-width:170px}}
 footer{padding-top:44px;padding-bottom:140px;font-size:.86rem;color:var(--soluk)}
 /* okuma */
 .oku-bas{padding-top:28px;padding-bottom:14px}
@@ -78,36 +91,60 @@ const sakla = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
 const al = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
 const ses = $("#ses");
 const HIZLAR = [1, 1.15, 1.3, 0.85];
-let LISTE, simdiki = null, cumleler = [], son = -1;
+let LISTE, ROMAN = [], simdiki = null, cumleler = [], son = -1, sonraki = null;
 
 async function raf() {
   ses.pause(); $("#calar").hidden = true; simdiki = null; document.title = "Sesli Klasikler";
   const L = LISTE, top = L.hikayeler.reduce((t, h) => t + h.sure, 0);
   const w = L.wer ? (L.wer.hata / L.wer.kelime * 100).toLocaleString("tr-TR", {maximumFractionDigits: 1}) : null;
-  $("#sayfa").innerHTML = `<header class="wrap ana"><div class="ust">Sesli Klasikler</div><h1>Ömer Seyfettin</h1>
-    <p class="lede">${L.hikayeler.length} hikâye, ${(top / 3600).toLocaleString("tr-TR", {maximumFractionDigits: 1})} saat. Dinlerken okunan cümle metinde vurgulanır; bir cümleye dokununca oradan devam eder. Kaldığın yer hatırlanır.</p></header>
-    <main class="wrap"><ul class="raf">${L.hikayeler.map((h) => { const k = +al("konum:" + h.ad) || 0;
+  const romanSaat = ROMAN.reduce((t, r) => t + r.sure, 0);
+  $("#sayfa").innerHTML = `<header class="wrap ana"><div class="ust">Sesli Klasikler</div><h1>Dinle, okurken takip et.</h1>
+    <p class="lede">Telifi düşmüş Türk klasikleri, ücretsiz: ${ROMAN.length ? `${ROMAN.length} roman ve ` : ""}${L.hikayeler.length} hikâye, toplam ${((top + romanSaat) / 3600).toLocaleString("tr-TR", {maximumFractionDigits: 1})} saat. Dinlerken okunan cümle metinde vurgulanır; bir cümleye dokununca oradan devam eder. Kaldığın yer hatırlanır.</p></header>
+    <main class="wrap">${ROMAN.map(romanKart).join("")}<h2 class="bolum">Ömer Seyfettin hikâyeleri</h2><ul class="raf">${L.hikayeler.map((h) => { const k = +al("konum:" + h.ad) || 0;
       return `<li><a href="#/${h.ad}"><b>${esc(h.baslik)}</b><span>${Math.round(h.sure / 60)} dk${k > 5 ? ` <i>%${Math.min(99, Math.round(k / h.sure * 100))} dinlendi</i>` : ""}</span></a></li>`; }).join("")}</ul></main>
-    <footer class="wrap"><p><b>Metinler</b> <a href="https://tr.wikisource.org/">Vikikaynak</a>'tan; Ömer Seyfettin 1920'de öldüğü için eserleri kamu malı. Her hikâyenin sayfasında alındığı sürümün bağlantısı var. Okul çağına uygun, iyi bilinen hikâyeler seçildi.</p>
+    <footer class="wrap"><p><b>Metinler</b> <a href="https://tr.wikisource.org/">Vikikaynak</a>'tan. Ömer Seyfettin 1920'de, Sabahattin Ali 1948'de öldü; 5846 sayılı Fikir ve Sanat Eserleri Kanunu'na göre (ölümden sonra 70 yıl) eserleri kamu malı. Kürk Mantolu Madonna, 1943 Remzi Kitabevi ilk baskısının sayfalarından yazılmış metindir; o yılların yazımı (“Ankarada”, “istiyen”) korunmuştur. Her hikâyenin sayfasında alındığı sürümün bağlantısı var. Okul çağına uygun, iyi bilinen hikâyeler seçildi.</p>
     <p><b>Ses</b> bilgisayarda üretildi: <a href="https://github.com/rhasspy/piper">Piper</a> ve DFKI'nin Türkçe ses verisiyle eğitilmiş <code>tr_TR-dfki-medium</code> modeli (CC BY-NC-SA 4.0). Bu kayıtlar da aynı lisansla, ticari olmayan kullanım için serbest. Bir insan sesi değil; eski kelimelerde vurgu hataları var.</p>
     ${w ? `<p><b>Ölçüm.</b> Her hikâyenin ilk dakikası Whisper'a geri yazdırıldı; asıl metne göre kelime hata oranı %${w}. Hataların bir kısmı Whisper'ın “guzzât, ikdâm” gibi eski kelimeleri tanımamasından, yani bu bir üst sınır.</p>` : ""}
     <p>Kod: <a href="https://github.com/birtohum/sesli-klasikler">github.com/birtohum/sesli-klasikler</a> · <a href="https://birtohum.github.io/">birtohum</a></p></footer>`;
   scrollTo(0, 0);
 }
 
-async function oku(ad) {
+function romanKart(r) {
+  const son = +al("roman:" + r.ad) || 1, k = r.kisimlar.find((x) => x.no === son) || r.kisimlar[0];
+  const basladi = al("roman:" + r.ad) != null;
+  return `<section class="roman"><div class="kapak" aria-hidden="true"><b>${esc(r.baslik)}</b><span>${esc(r.yazar)}</span><i>${r.yil}</i></div>
+    <div class="roman-ic"><div class="ust">Roman · ${r.yil}</div><h2>${esc(r.baslik)}</h2><p class="yazar">${esc(r.yazar)}</p>
+    <p>${esc(r.tanitim)}</p><p class="not">${r.kisimlar.length} kısım · ${(r.sure / 3600).toLocaleString("tr-TR", {maximumFractionDigits: 1})} saat · kısımlar arka arkaya çalar</p>
+    <a class="basla" href="#/${k.ad}">${basladi ? `Kaldığın yerden devam: ${k.no}. kısım` : "Dinlemeye başla"} ▶</a>
+    <nav class="kisimlar" aria-label="Kısımlar">${r.kisimlar.map((x) => `<a href="#/${x.ad}"${x.no === son && basladi ? ' class="bu"' : ""}>${x.no}</a>`).join("")}</nav></div></section>`;
+}
+
+function bul(ad) {
   const h = LISTE.hikayeler.find((x) => x.ad === ad);
-  if (!h) { location.hash = ""; return; }
+  if (h) return {h};
+  for (const r of ROMAN) { const i = r.kisimlar.findIndex((x) => x.ad === ad); if (i >= 0) return {h: r.kisimlar[i], r, i}; }
+  return null;
+}
+
+async function oku(ad) {
+  const b = bul(ad);
+  if (!b) { location.hash = ""; return; }
+  const r = b.r;
+  sonraki = r && r.kisimlar[b.i + 1] ? r.kisimlar[b.i + 1].ad : null;
+  if (r) sakla("roman:" + r.ad, String(b.h.no));
   const d = await (await fetch(`kitap/${ad}/metin.json`)).json();
   simdiki = ad; son = -1; cumleler = [];
   document.title = `${d.baslik} · Sesli Klasikler`;
-  $("#sayfa").innerHTML = `<header class="wrap oku-bas"><a class="geri" href="#">← Bütün hikâyeler</a><h1>${esc(d.baslik)}</h1>
+  const onceki = r && b.i > 0 ? r.kisimlar[b.i - 1].ad : null;
+  $("#sayfa").innerHTML = `<header class="wrap oku-bas"><a class="geri" href="#">← Bütün kitaplar</a><h1>${esc(r ? r.baslik : d.baslik)}</h1>
+    ${r ? `<p class="kisim-nav">${onceki ? `<a href="#/${onceki}">← ${b.i}. kısım</a>` : "<span></span>"}<b>${b.h.no}. kısım / ${r.kisimlar.length}</b>${sonraki ? `<a href="#/${sonraki}">${b.i + 2}. kısım →</a>` : "<span></span>"}</p>` : ""}
     <p>${esc(d.yazar)} · ${Math.round(d.sure / 60)} dakika · <a href="${esc(d.kaynak)}">metnin kaynağı</a></p></header>
     <main class="wrap metin" id="metin">${d.paragraflar.map((p) => `<p>${p.map((c) => { cumleler.push(c); return `<span data-i="${cumleler.length - 1}">${esc(c.t)}</span>`; }).join(" ")}</p>`).join("")}</main>
-    <footer class="wrap"><p>Bitince: <a href="#">başka bir hikâye seç</a>.</p></footer>`;
+    <footer class="wrap"><p>${sonraki ? `Bu kısım bitince <a href="#/${sonraki}">sonraki kısım</a> kendiliğinden başlar.` : `Bitince: <a href="#">başka bir kitap seç</a>.`}</p></footer>`;
   ses.src = `kitap/${ad}/ses.mp3`;
   const k = +al("konum:" + ad) || 0;
-  ses.addEventListener("loadedmetadata", () => { if (k > 0 && k < d.sure - 3) ses.currentTime = k; ciz(); }, {once: true});
+  const devam = (() => { try { return sessionStorage.getItem("otomatik"); } catch (e) { return null; } })() === ad;
+  ses.addEventListener("loadedmetadata", () => { if (k > 0 && k < d.sure - 3) ses.currentTime = k; ciz(); if (devam) { try { sessionStorage.removeItem("otomatik"); } catch (e) {} ses.play().catch(() => {}); } }, {once: true});
   ses.playbackRate = +al("hiz") || 1; $("#hiz").textContent = ses.playbackRate.toLocaleString("tr-TR") + "×";
   $("#toplam").textContent = dk(d.sure); $("#calar").hidden = false;
   if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({title: d.baslik, artist: d.yazar, album: "Sesli Klasikler"});
@@ -131,7 +168,8 @@ function ciz() {
 ses.addEventListener("timeupdate", ciz);
 ses.addEventListener("play", () => { $("#oynat").textContent = "❚❚"; $("#oynat").setAttribute("aria-label", "Duraklat"); });
 ses.addEventListener("pause", () => { $("#oynat").textContent = "▶"; $("#oynat").setAttribute("aria-label", "Oynat"); });
-ses.addEventListener("ended", () => { if (simdiki) sakla("konum:" + simdiki, "0"); });
+ses.addEventListener("ended", () => { if (simdiki) sakla("konum:" + simdiki, "0");
+  if (sonraki) { try { sessionStorage.setItem("otomatik", sonraki); } catch (e) {} location.hash = "#/" + sonraki; } });
 $("#oynat").onclick = () => (ses.paused ? ses.play() : ses.pause());
 $("#geri15").onclick = () => { ses.currentTime = Math.max(0, ses.currentTime - 15); };
 $("#ileri15").onclick = () => { ses.currentTime = Math.min(ses.duration || 0, ses.currentTime + 15); };
@@ -142,7 +180,8 @@ document.addEventListener("keydown", (e) => { if (e.code === "Space" && simdiki 
 
 function yonlendir() { const ad = location.hash.replace(/^#\/?/, ""); ad ? oku(ad) : raf(); }
 addEventListener("hashchange", yonlendir);
-fetch("kitap/liste.json").then((r) => r.json()).then((l) => { LISTE = l; yonlendir(); })
+Promise.all([fetch("kitap/liste.json").then((r) => r.json()), fetch("kitap/romanlar.json").then((r) => (r.ok ? r.json() : [])).catch(() => [])])
+  .then(([l, ro]) => { LISTE = l; ROMAN = ro; yonlendir(); })
   .catch((e) => { $("#sayfa").innerHTML = `<p class="wrap">Liste yüklenemedi: ${esc(e)}</p>`; });
 </script>
 </body>

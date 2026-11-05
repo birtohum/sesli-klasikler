@@ -2,7 +2,7 @@
 
 **Dinle:** https://birtohum.github.io/sesli-klasikler/
 
-Ömer Seyfettin'in 18 hikâyesi, ücretsiz sesli kitap (yaklaşık 4,4 saat). Dinlerken okunan cümle metinde vurgulanır, bir cümleye dokununca oradan devam eder, kaldığın yer hatırlanır.
+Sabahattin Ali'nin **Kürk Mantolu Madonna**'sı (1943 ilk baskı metni, 10 kısım, 5,8 saat) ve Ömer Seyfettin'in 18 hikâyesi (4,4 saat), ücretsiz sesli kitap. Dinlerken okunan cümle metinde vurgulanır, bir cümleye dokununca oradan devam eder, kaldığın yer hatırlanır.
 
 ## Nasıl üretildi
 
@@ -20,6 +20,10 @@ pip install piper-tts imageio-ffmpeg numpy
 # ses modeli: huggingface.co/rhasspy/piper-voices  tr/tr_TR/dfki/medium  → araclar/
 python araclar/uret.py --whisper     # GROQ_API_KEY gerekir (yalnız ölçüm için)
 ```
+
+## Kürk Mantolu Madonna
+
+`araclar/roman.py`: metin Vikikaynak'ta 1943 Remzi Kitabevi ilk baskısının taranmış sayfalarından yazılmış hâli (Sabahattin Ali 1948'de öldü; FSEK md. 27, ölümden sonra 70 yıl → 2019'dan beri kamu malı). O yılların yazımı korunur. Anlatıcının bölümü ve defter ("20 Haziran 1933.") ayrı ayrı, paragraf sınırlarından ~30 dakikalık 10 kısma bölünür; kısımlar sitede arka arkaya çalar. Whisper ölçümü: kelime hata oranı %9,9 (108/1096).
 
 ## Lisans
 
