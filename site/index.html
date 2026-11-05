@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sesli Klasikler</title>
+<meta name="description" content="Ömer Seyfettin'in 18 hikâyesi, ücretsiz sesli kitap. Okunan cümle metinde vurgulanır; telifi düşmüş metinler, açık lisanslı Türkçe ses.">
+<meta property="og:title" content="Sesli Klasikler: Ömer Seyfettin">
+<meta property="og:description" content="Kaşağı, Forsa, Diyet, Pembe İncili Kaftan… 18 hikâye, 4,5 saat, okunan cümle vurgulu.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M4 6c5-2 9-1 12 2 3-3 7-4 12-2v20c-5-2-9-1-12 2-3-3-7-4-12-2z%22 fill=%22%23f4ead5%22 stroke=%22%235a2d14%22 stroke-width=%222%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--zemin:#f4ead5;--kagit:#fbf5e8;--yazi:#2b1d12;--soluk:#7d6852;--cizgi:#e2d3b5;--murekkep:#5a2d14;--vurgu:#f2c879;--vurgu-yazi:#2b1d12}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--zemin:#17120d;--kagit:#1f1812;--yazi:#efe3cc;--soluk:#b19c80;--cizgi:#3a2e22;--murekkep:#f0b98a;--vurgu:#6b4a1a;--vurgu-yazi:#fff4e0}}
+:root[data-theme="dark"]{--zemin:#17120d;--kagit:#1f1812;--yazi:#efe3cc;--soluk:#b19c80;--cizgi:#3a2e22;--murekkep:#f0b98a;--vurgu:#6b4a1a;--vurgu-yazi:#fff4e0}
+*{box-sizing:border-box}
+html{scroll-padding-top:30vh}
+body{margin:0;background:var(--zemin);color:var(--yazi);font:17px/1.7 Literata,Georgia,serif}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+a{color:var(--murekkep)}
+.ust{font:600 .72rem/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--soluk)}
+header.ana{padding-top:52px;padding-bottom:10px}
+h1{font:700 clamp(2.5rem,8vw,4.4rem)/1 Literata,Georgia,serif;letter-spacing:-.02em;margin:12px 0 0;color:var(--murekkep)}
+.lede{color:var(--soluk);font-size:1.08rem;margin:14px 0 0;max-width:52ch}
+.raf{list-style:none;padding:0;margin:30px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.raf a{display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;background:var(--kagit);border:1px solid var(--cizgi);border-radius:4px 10px 10px 4px;border-left:6px solid var(--murekkep);padding:16px 16px 14px;transition:transform .15s}
+.raf a:hover,.raf a:focus-visible{transform:translateY(-3px);outline:none;box-shadow:0 10px 24px -16px rgba(43,29,18,.6)}
+.raf b{font-size:1.2rem;line-height:1.2}
+.raf span{font:500 .8rem Inter,sans-serif;color:var(--soluk);margin-top:auto;padding-top:10px;display:flex;justify-content:space-between}
+.raf i{font-style:normal;color:var(--murekkep)}
+.not{font-size:.88rem;color:var(--soluk)}
+footer{padding-top:44px;padding-bottom:140px;font-size:.86rem;color:var(--soluk)}
+/* okuma */
+.oku-bas{padding-top:28px;padding-bottom:14px}
+.geri{font:600 .85rem Inter,sans-serif;text-decoration:none}
+.oku-bas h1{font-size:clamp(2.2rem,7vw,3.4rem)}
+.oku-bas p{margin:6px 0 0;color:var(--soluk);font-size:.95rem}
+.metin p{margin:0 0 1.05em}
+.metin span{cursor:pointer;border-radius:4px;padding:1px 0;transition:background .2s}
+.metin span:hover{background:color-mix(in srgb,var(--vurgu) 35%,transparent)}
+.metin span.simdi{background:var(--vurgu);color:var(--vurgu-yazi);box-shadow:0 0 0 3px var(--vurgu)}
+.calar{position:fixed;left:0;right:0;bottom:0;background:var(--kagit);border-top:1px solid var(--cizgi);box-shadow:0 -10px 30px -20px rgba(43,29,18,.5);padding:10px 0 calc(10px + env(safe-area-inset-bottom))}
+.calar .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.calar button{font:600 .9rem Inter,sans-serif;border:1.5px solid var(--cizgi);background:var(--kagit);color:var(--yazi);border-radius:99px;min-width:44px;min-height:44px;padding:0 12px;cursor:pointer}
+.calar button.oynat{background:var(--murekkep);border-color:var(--murekkep);color:var(--kagit);width:54px;height:54px;font-size:1.2rem;padding:0}
+.calar button:focus-visible{outline:3px solid var(--vurgu);outline-offset:2px}
+.dugmeler{display:flex;gap:6px}
+.cubuk{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cubuk input{width:100%;accent-color:var(--murekkep)}
+.cubuk small{font:500 .75rem Inter,sans-serif;color:var(--soluk);display:flex;justify-content:space-between}
+@media (max-width:560px){.calar .wrap{grid-template-columns:auto 1fr}.dugmeler{grid-column:1/-1;justify-content:center}}
+</style>
+</head>
+<body>
+<div id="sayfa"></div>
+<div class="calar" id="calar" hidden>
+  <div class="wrap">
+    <button class="oynat" id="oynat" aria-label="Oynat">▶</button>
+    <div class="cubuk"><input id="konum" type="range" min="0" max="1000" value="0" aria-label="Konum"><small><span id="gecen">0:00</span><span id="toplam">0:00</span></small></div>
+    <div class="dugmeler">
+      <button id="geri15" aria-label="15 saniye geri">−15</button>
+      <button id="ileri15" aria-label="15 saniye ileri">+15</button>
+      <button id="hiz" aria-label="Okuma hızı">1×</button>
+    </div>
+  </div>
+</div>
+<audio id="ses" preload="metadata"></audio>
+
+<script>
+"use strict";
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const dk = (sn) => { sn = Math.max(0, Math.floor(sn)); const s = Math.floor(sn / 3600), m = Math.floor(sn % 3600 / 60), x = sn % 60;
+  return (s ? s + ":" + String(m).padStart(2, "0") : m) + ":" + String(x).padStart(2, "0"); };
+const sakla = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+const al = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const ses = $("#ses");
+const HIZLAR = [1, 1.15, 1.3, 0.85];
+let LISTE, simdiki = null, cumleler = [], son = -1;
+
+async function raf() {
+  ses.pause(); $("#calar").hidden = true; simdiki = null; document.title = "Sesli Klasikler";
+  const L = LISTE, top = L.hikayeler.reduce((t, h) => t + h.sure, 0);
+  const w = L.wer ? (L.wer.hata / L.wer.kelime * 100).toLocaleString("tr-TR", {maximumFractionDigits: 1}) : null;
+  $("#sayfa").innerHTML = `<header class="wrap ana"><div class="ust">Sesli Klasikler</div><h1>Ömer Seyfettin</h1>
+    <p class="lede">${L.hikayeler.length} hikâye, ${(top / 3600).toLocaleString("tr-TR", {maximumFractionDigits: 1})} saat. Dinlerken okunan cümle metinde vurgulanır; bir cümleye dokununca oradan devam eder. Kaldığın yer hatırlanır.</p></header>
+    <main class="wrap"><ul class="raf">${L.hikayeler.map((h) => { const k = +al("konum:" + h.ad) || 0;
+      return `<li><a href="#/${h.ad}"><b>${esc(h.baslik)}</b><span>${Math.round(h.sure / 60)} dk${k > 5 ? ` <i>%${Math.min(99, Math.round(k / h.sure * 100))} dinlendi</i>` : ""}</span></a></li>`; }).join("")}</ul></main>
+    <footer class="wrap"><p><b>Metinler</b> <a href="https://tr.wikisource.org/">Vikikaynak</a>'tan; Ömer Seyfettin 1920'de öldüğü için eserleri kamu malı. Her hikâyenin sayfasında alındığı sürümün bağlantısı var. Okul çağına uygun, iyi bilinen hikâyeler seçildi.</p>
+    <p><b>Ses</b> bilgisayarda üretildi: <a href="https://github.com/rhasspy/piper">Piper</a> ve DFKI'nin Türkçe ses verisiyle eğitilmiş <code>tr_TR-dfki-medium</code> modeli (CC BY-NC-SA 4.0). Bu kayıtlar da aynı lisansla, ticari olmayan kullanım için serbest. Bir insan sesi değil; eski kelimelerde vurgu hataları var.</p>
+    ${w ? `<p><b>Ölçüm.</b> Her hikâyenin ilk dakikası Whisper'a geri yazdırıldı; asıl metne göre kelime hata oranı %${w}. Hataların bir kısmı Whisper'ın “guzzât, ikdâm” gibi eski kelimeleri tanımamasından, yani bu bir üst sınır.</p>` : ""}
+    <p>Kod: <a href="https://github.com/birtohum/sesli-klasikler">github.com/birtohum/sesli-klasikler</a> · <a href="https://birtohum.github.io/">birtohum</a></p></footer>`;
+  scrollTo(0, 0);
+}
+
+async function oku(ad) {
+  const h = LISTE.hikayeler.find((x) => x.ad === ad);
+  if (!h) { location.hash = ""; return; }
+  const d = await (await fetch(`kitap/${ad}/metin.json`)).json();
+  simdiki = ad; son = -1; cumleler = [];
+  document.title = `${d.baslik} · Sesli Klasikler`;
+  $("#sayfa").innerHTML = `<header class="wrap oku-bas"><a class="geri" href="#">← Bütün hikâyeler</a><h1>${esc(d.baslik)}</h1>
+    <p>${esc(d.yazar)} · ${Math.round(d.sure / 60)} dakika · <a href="${esc(d.kaynak)}">metnin kaynağı</a></p></header>
+    <main class="wrap metin" id="metin">${d.paragraflar.map((p) => `<p>${p.map((c) => { cumleler.push(c); return `<span data-i="${cumleler.length - 1}">${esc(c.t)}</span>`; }).join(" ")}</p>`).join("")}</main>
+    <footer class="wrap"><p>Bitince: <a href="#">başka bir hikâye seç</a>.</p></footer>`;
+  ses.src = `kitap/${ad}/ses.mp3`;
+  const k = +al("konum:" + ad) || 0;
+  ses.addEventListener("loadedmetadata", () => { if (k > 0 && k < d.sure - 3) ses.currentTime = k; ciz(); }, {once: true});
+  ses.playbackRate = +al("hiz") || 1; $("#hiz").textContent = ses.playbackRate.toLocaleString("tr-TR") + "×";
+  $("#toplam").textContent = dk(d.sure); $("#calar").hidden = false;
+  if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({title: d.baslik, artist: d.yazar, album: "Sesli Klasikler"});
+  scrollTo(0, 0);
+}
+
+function ciz() {
+  const t = ses.currentTime;
+  $("#gecen").textContent = dk(t);
+  if (ses.duration) $("#konum").value = Math.round(t / ses.duration * 1000);
+  let i = son >= 0 && cumleler[son] && t >= cumleler[son].b && t < cumleler[son].s + 0.35 ? son : cumleler.findIndex((c) => t < c.s + 0.3);
+  if (i !== son) {
+    const eski = document.querySelector(".metin span.simdi"); if (eski) eski.classList.remove("simdi");
+    const yeni = document.querySelector(`.metin span[data-i="${i}"]`);
+    if (yeni) { yeni.classList.add("simdi"); if (!ses.paused) { const r = yeni.getBoundingClientRect(); if (r.top < 80 || r.bottom > innerHeight - 140) yeni.scrollIntoView({block: "center", behavior: "smooth"}); } }
+    son = i;
+  }
+  if (simdiki) sakla("konum:" + simdiki, String(Math.floor(t)));
+}
+
+ses.addEventListener("timeupdate", ciz);
+ses.addEventListener("play", () => { $("#oynat").textContent = "❚❚"; $("#oynat").setAttribute("aria-label", "Duraklat"); });
+ses.addEventListener("pause", () => { $("#oynat").textContent = "▶"; $("#oynat").setAttribute("aria-label", "Oynat"); });
+ses.addEventListener("ended", () => { if (simdiki) sakla("konum:" + simdiki, "0"); });
+$("#oynat").onclick = () => (ses.paused ? ses.play() : ses.pause());
+$("#geri15").onclick = () => { ses.currentTime = Math.max(0, ses.currentTime - 15); };
+$("#ileri15").onclick = () => { ses.currentTime = Math.min(ses.duration || 0, ses.currentTime + 15); };
+$("#hiz").onclick = () => { const i = (HIZLAR.indexOf(ses.playbackRate) + 1) % HIZLAR.length; ses.playbackRate = HIZLAR[i]; sakla("hiz", HIZLAR[i]); $("#hiz").textContent = HIZLAR[i].toLocaleString("tr-TR") + "×"; };
+$("#konum").addEventListener("input", (e) => { if (ses.duration) ses.currentTime = e.target.value / 1000 * ses.duration; });
+document.addEventListener("click", (e) => { const s = e.target.closest(".metin span[data-i]"); if (s) { ses.currentTime = cumleler[+s.dataset.i].b; ses.play(); } });
+document.addEventListener("keydown", (e) => { if (e.code === "Space" && simdiki && !/INPUT|BUTTON|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); ses.paused ? ses.play() : ses.pause(); } });
+
+function yonlendir() { const ad = location.hash.replace(/^#\/?/, ""); ad ? oku(ad) : raf(); }
+addEventListener("hashchange", yonlendir);
+fetch("kitap/liste.json").then((r) => r.json()).then((l) => { LISTE = l; yonlendir(); })
+  .catch((e) => { $("#sayfa").innerHTML = `<p class="wrap">Liste yüklenemedi: ${esc(e)}</p>`; });
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+__pycache__/
+araclar/*.onnx
+araclar/*.onnx.json

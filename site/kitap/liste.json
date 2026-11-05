@@ -1,0 +1,190 @@
+{
+ "yazar": "Ömer Seyfettin",
+ "ses": "Piper tr_TR-dfki-medium",
+ "hikayeler": [
+  {
+   "ad": "kasagi",
+   "baslik": "Kaşağı",
+   "sure": 503.2,
+   "kelime": 855,
+   "wer": {
+    "hata": 4,
+    "kelime": 119
+   }
+  },
+  {
+   "ad": "forsa",
+   "baslik": "Forsa",
+   "sure": 623.3,
+   "kelime": 1068,
+   "wer": {
+    "hata": 8,
+    "kelime": 107
+   }
+  },
+  {
+   "ad": "yuksek-okceler",
+   "baslik": "Yüksek Ökçeler",
+   "sure": 362.1,
+   "kelime": 653,
+   "wer": {
+    "hata": 10,
+    "kelime": 113
+   }
+  },
+  {
+   "ad": "kurumus-agaclar",
+   "baslik": "Kurumuş Ağaçlar",
+   "sure": 489.8,
+   "kelime": 839,
+   "wer": {
+    "hata": 9,
+    "kelime": 103
+   }
+  },
+  {
+   "ad": "and",
+   "baslik": "And",
+   "sure": 893.1,
+   "kelime": 1628,
+   "wer": {
+    "hata": 13,
+    "kelime": 104
+   }
+  },
+  {
+   "ad": "diyet",
+   "baslik": "Diyet",
+   "sure": 1305.6,
+   "kelime": 2340,
+   "wer": {
+    "hata": 10,
+    "kelime": 118
+   }
+  },
+  {
+   "ad": "pembe-incili-kaftan",
+   "baslik": "Pembe İncili Kaftan",
+   "sure": 1475.7,
+   "kelime": 2654,
+   "wer": {
+    "hata": 12,
+    "kelime": 98
+   }
+  },
+  {
+   "ad": "topuz",
+   "baslik": "Topuz",
+   "sure": 817.8,
+   "kelime": 1397,
+   "wer": {
+    "hata": 10,
+    "kelime": 104
+   }
+  },
+  {
+   "ad": "basini-vermeyen-sehit",
+   "baslik": "Başını Vermeyen Şehit",
+   "sure": 1309.1,
+   "kelime": 2363,
+   "wer": {
+    "hata": 20,
+    "kelime": 96
+   }
+  },
+  {
+   "ad": "perili-kosk",
+   "baslik": "Perili Köşk",
+   "sure": 851.9,
+   "kelime": 1504,
+   "wer": {
+    "hata": 9,
+    "kelime": 95
+   }
+  },
+  {
+   "ad": "kurbaga-duasi",
+   "baslik": "Kurbağa Duası",
+   "sure": 820.8,
+   "kelime": 1405,
+   "wer": {
+    "hata": 22,
+    "kelime": 108
+   }
+  },
+  {
+   "ad": "uc-nasihat",
+   "baslik": "Üç Nasihat",
+   "sure": 1262.4,
+   "kelime": 2171,
+   "wer": {
+    "hata": 3,
+    "kelime": 103
+   }
+  },
+  {
+   "ad": "nicin-zengin-olmamis",
+   "baslik": "Niçin Zengin Olmamış?",
+   "sure": 1193.3,
+   "kelime": 2163,
+   "wer": {
+    "hata": 19,
+    "kelime": 104
+   }
+  },
+  {
+   "ad": "tos",
+   "baslik": "Tos",
+   "sure": 1072.9,
+   "kelime": 1986,
+   "wer": {
+    "hata": 17,
+    "kelime": 87
+   }
+  },
+  {
+   "ad": "teke-tek",
+   "baslik": "Teke Tek",
+   "sure": 895.0,
+   "kelime": 1545,
+   "wer": {
+    "hata": 17,
+    "kelime": 112
+   }
+  },
+  {
+   "ad": "bir-kayisin-tesiri",
+   "baslik": "Bir Kayışın Tesiri",
+   "sure": 310.6,
+   "kelime": 528,
+   "wer": {
+    "hata": 10,
+    "kelime": 88
+   }
+  },
+  {
+   "ad": "cakmak",
+   "baslik": "Çakmak",
+   "sure": 568.6,
+   "kelime": 949,
+   "wer": {
+    "hata": 8,
+    "kelime": 92
+   }
+  },
+  {
+   "ad": "kulah",
+   "baslik": "Külah",
+   "sure": 1101.1,
+   "kelime": 1961,
+   "wer": {
+    "hata": 8,
+    "kelime": 112
+   }
+  }
+ ],
+ "wer": {
+  "hata": 209,
+  "kelime": 1863
+ }
+}
