@@ -23,7 +23,7 @@ python araclar/uret.py --whisper     # GROQ_API_KEY gerekir (yalnız ölçüm i�
 
 ## Kürk Mantolu Madonna
 
-`araclar/roman.py`: metin Vikikaynak'ta 1943 Remzi Kitabevi ilk baskısının taranmış sayfalarından yazılmış hâli (Sabahattin Ali 1948'de öldü; FSEK md. 27, ölümden sonra 70 yıl → 2019'dan beri kamu malı). O yılların yazımı korunur. Anlatıcının bölümü ve defter ("20 Haziran 1933.") ayrı ayrı, paragraf sınırlarından ~30 dakikalık 10 kısma bölünür; kısımlar sitede arka arkaya çalar. Whisper ölçümü: kelime hata oranı %9,9 (108/1096).
+`araclar/roman.py`: metin Vikikaynak'ta 1943 Remzi Kitabevi ilk baskısının taranmış sayfalarından yazılmış hâli (Sabahattin Ali 1948'de öldü; FSEK md. 27, ölümden sonra 70 yıl → 2019'dan beri kamu malı). O yılların yazımı korunur. Anlatıcının bölümü ve defter ("20 Haziran 1933.") ayrı ayrı, paragraf sınırlarından 10 kısma bölünür (31–41 dakika); kısımlar sitede arka arkaya çalar. Whisper ölçümü: kelime hata oranı %9,9 (108/1096).
 
 ## Lisans
 
