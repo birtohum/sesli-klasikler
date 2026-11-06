@@ -184,5 +184,6 @@ Promise.all([fetch("kitap/liste.json").then((r) => r.json()), fetch("kitap/roman
   .then(([l, ro]) => { LISTE = l; ROMAN = ro; yonlendir(); })
   .catch((e) => { $("#sayfa").innerHTML = `<p class="wrap">Liste yüklenemedi: ${esc(e)}</p>`; });
 </script>
+<script data-goatcounter="https://birtohum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
